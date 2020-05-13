@@ -3,6 +3,8 @@
       <h3> {{ country.name }} </h3>
       <p>Capital: {{country.capital}} </p>
       <p>Population: {{country.population}} </p>
+      <h4>Languages: </h4>
+      <p v-for="language in country.languages">{{language.name}}</p>
   </div>
 </template>
 
