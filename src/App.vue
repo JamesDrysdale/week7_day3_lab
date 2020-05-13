@@ -1,19 +1,26 @@
 <template>
     <div>
-      <h1>Countries</h1>
+      <header>
+        <h1>Countries</h1>
 
-        <div> <!-- Drop down: select from a lost of all countries  -->
-          <label for="country-select">Select a country:</label>
-          <select id='country-select' v-model="selectedCountry">
-            <option disabled value="">Select a country</option>
-            <option v-for="(country, index) in countries" :key="index" :value="country">{{country.name}}</option>
-          </select>
-          <country-detail :country='selectedCountry'></country-detail>
+        <div class="search-container" id="search-for-country"><!-- Search box: Find countries by name  -->
+          <label for="country-search">&#128269; </label>
+          <input type="text" v-model="search" placeholder="Find a country..." />
         </div>
+      </header>
 
-        <div><!-- Search box: Find countries by name  -->
-          <label for="country-search">Search by name: </label>
-          <input type="text" v-model="search" placeholder="Search country..." />
+      <section>
+          <div class="main-container" id="select-country"> <!-- Drop down: select from a lost of all countries  -->
+            <label for="country-select">Select a country:</label>
+            <select id='country-select' v-model="selectedCountry">
+              <option disabled value="">Select a country</option>
+              <option v-for="(country, index) in countries" :key="index" :value="country">{{country.name}}</option>
+            </select>
+            <country-detail :country='selectedCountry'></country-detail>
+          </div>
+        </section>
+
+        <div>  
           <countries-list :countries="filteredList" v-bind="countries"></countries-list>
         </div>
 
@@ -62,8 +69,29 @@ export default {
 </script>
 
 <style>
-  .main-container {
-    display: flex;
-    justify-content: space-between;
+
+  body {
+    font-family: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    
+  }
+
+  h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+  }
+
+  header {
+    background-color: palegreen;
+    padding: 15px;
+    position: relative;
+    bottom: 10px;
+  }
+
+  .search-container {
+    position: relative;
+    bottom: 10px;
+    float: right;
+    font-size: 0.8em;
+    color: rgb(85, 83, 83);
   }
 </style>
