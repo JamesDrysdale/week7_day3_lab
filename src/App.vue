@@ -14,12 +14,13 @@
         <div><!-- Search box: Find countries by name  -->
           <label for="country-search">Search by name: </label>
           <input type="text" v-model="search" placeholder="Search country..." />
+          <countries-list :countries="filteredList" v-bind="countries"></countries-list>
         </div>
 
-        <div class="main-container" >
+        <!-- <div class="main-container" >  Original list of countries
           <countries-list :countries="countries" v-bind="countries"></countries-list>
           <country-detail :country='selectedCountry'></country-detail>
-        </div>
+        </div> -->
     </div>
 </template>
 
