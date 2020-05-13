@@ -1,6 +1,13 @@
 <template>
     <div>
       <h1>Countries</h1>
+        <div>
+          <select id='country-select'>
+            <option disabled value="">Select a country</option>
+            <option v-for="(country, index) in countries" :key="index" :countries="country">{{country.name}}</option>
+          </select>
+        </div>
+
         <div class="main-container">
           <countries-list :countries="countries"></countries-list>
           <country-detail :country='selectedCountry'></country-detail>
