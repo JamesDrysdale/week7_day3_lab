@@ -2,15 +2,16 @@
     <div>
       <h1>Countries</h1>
         <div>
-          <select id='country-select'>
+          <select id='country-select' v-model="selectedCountry">
             <option disabled value="">Select a country</option>
-            <option v-for="(country, index) in countries" :key="index" :countries="country">{{country.name}}</option>
+            <option v-for="(country, index) in countries" :key="index" :value="country">{{country.name}}</option>
           </select>
+          <country-detail :country='selectedCountry'></country-detail>
         </div>
 
         <div class="main-container">
-          <countries-list :countries="countries"></countries-list>
-          <country-detail :country='selectedCountry'></country-detail>
+          <!-- <countries-list :countries="countries"></countries-list> -->
+          <!-- <country-detail :country='selectedCountry'></country-detail> -->
         </div>
     </div>
 </template>
