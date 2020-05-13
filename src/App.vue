@@ -1,7 +1,9 @@
 <template>
     <div>
       <h1>Countries</h1>
-        <div>
+
+        <div> <!-- Drop down: select from a lost of all countries  -->
+          <label for="country-select">Select a country:</label>
           <select id='country-select' v-model="selectedCountry">
             <option disabled value="">Select a country</option>
             <option v-for="(country, index) in countries" :key="index" :value="country">{{country.name}}</option>
@@ -9,9 +11,14 @@
           <country-detail :country='selectedCountry'></country-detail>
         </div>
 
-        <div class="main-container">
-          <!-- <countries-list :countries="countries"></countries-list> -->
-          <!-- <country-detail :country='selectedCountry'></country-detail> -->
+        <div><!-- Search box: Find countries by name  -->
+          <label for="country-search">Search by name: </label>
+          <input type="text" v-model="search" placeholder="Search country..." />
+        </div>
+
+        <div class="main-container" >
+          <countries-list :countries="countries" v-bind="countries"></countries-list>
+          <country-detail :country='selectedCountry'></country-detail>
         </div>
     </div>
 </template>
@@ -26,7 +33,8 @@ export default {
   data(){
     return {
       countries: [],
-      selectedCountry: null
+      selectedCountry: null,
+      search: ""
     }
   },
   mounted(){
@@ -41,6 +49,13 @@ export default {
   components: {
     "countries-list": CountriesList,
     "country-detail": CountryDetail
+  },
+  computed: {
+    filteredList() {
+      return this.countries.filter(country => {
+        return country.name.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
   }
 }
 </script>
